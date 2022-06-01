@@ -5,3 +5,7 @@ ex01/zombieHorde
 .vscode/settings.json
 ex03/humans
 ex02/brain
+ex04/replace
+ex04/test
+ex04/test.replace
+.gitignore
