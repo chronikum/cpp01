@@ -22,7 +22,7 @@ random_test: re
 	openssl rand -hex 2000 > testfile
 	sed 's/a/HHH/g' testfile > controlfile
 	./replace testfile a HHH
-	echo "If an error occurs, the number is NOT null:"
+	@echo "If an error occurs, the number is NOT zero:"
 	@diff controlfile testfile.replace | wc -c
 	@rm controlfile
 	@rm testfile
@@ -30,13 +30,15 @@ random_test: re
 	
 random_big_test: re
 	@echo "Running test!"
-	openssl rand -hex 20000 > testfile
+	openssl rand -hex 200000 > basefile
+	sed 's/3/\n/g' basefile > testfile
 	sed 's/b/HHH/g' testfile > controlfile
 	./replace testfile b HHH
-	echo "If an error occurs, the number is NOT null:"
+	@echo "If an error occurs, the number is NOT zero:"
 	@diff controlfile testfile.replace | wc -c
 	@rm controlfile
 	@rm testfile
+	@rm basefile
 	@rm testfile.replace
 	
 re: fclean $(NAME)
